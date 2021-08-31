@@ -1,0 +1,17 @@
+FROM ubuntu:latest
+
+## Install Packages/Libraries ##
+RUN apt-get update -y && \
+    apt-get install -y \
+        python3-pip \
+        python3-dev \
+        gfortran \
+        libopenblas-dev \
+        liblapack-dev \
+        wget \
+        unzip \
+        vim \
+        curl
+
+# Create system user group and add new user.
+RUN groupadd -r lit_user && useradd -r -s /bin/false -g lit_user lit_user

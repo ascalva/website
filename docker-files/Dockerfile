@@ -1,18 +1,4 @@
-FROM ubuntu:latest
-
-## Install Packages/Libraries ##
-RUN apt-get update -y && \
-    apt-get install -y \
-        python3-pip \
-        python3-dev \
-        gfortran \
-        libopenblas-dev \
-        liblapack-dev \
-        wget \
-        unzip \
-        vim \
-        curl \
-        sudo
+FROM 054942746160.dkr.ecr.us-west-2.amazonaws.com/personal-website-base:latest
 
 COPY ./requirements.txt /tmp/
 RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
@@ -20,9 +6,6 @@ RUN pip3 install gunicorn
 
 ## Environment Setup ##
 EXPOSE 5000
-
-# Create system user group and add new user.
-RUN groupadd -r lit_user && useradd -r -s /bin/false -g lit_user lit_user
 
 # Make new user owner of project directory.
 RUN mkdir /app
