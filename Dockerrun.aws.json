@@ -15,10 +15,6 @@
           "value:": "${SECRET_KEY}"
       },
       {
-          "name:": "SECURITY_PASSWORD_SALT",
-          "value:": "${SECURITY_PASSWORD_SALT}"
-      },
-      {
           "name:": "WORKER_NUM",
           "value:": "${WORKER_NUM}"
       }
