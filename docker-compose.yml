@@ -5,7 +5,7 @@ services:
         restart: always
         build:
             context: .
-            dockerfile: ./src/Dockerfile.local
+            dockerfile: ./docker-files/Dockerfile.local
         container_name: backend
         image: backend
         ports:
