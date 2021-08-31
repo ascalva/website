@@ -1,25 +1,22 @@
-version: "3"
-services:
-    frontend:
-        container_name: frontend
-        build:
-            context: ./frontend
-            dockerfile: Dockerfile
-        ports:
-            - 80:80
-            - 443:443
-        volumes:
-            - /home/ascalva/Documents/code/website/ssl:/etc/nginx/certs
+version: "3.1"
 
+services:
     backend:
         restart: always
+        build:
+            context: .
+            dockerfile: ./src/Dockerfile.local
         container_name: backend
-        build: ./backend
-        expose:
-            - 5000
+        image: backend
+        ports:
+            - "5000:5000"
         volumes:
-            - ./backend:/usr/src/app
-        environment:
-            - FLASK_DEBUG=1
-            - FLASK_ENV=development
-            - FLASK_APP=app.py
+            - ./:/app
+        tty:
+            true
+        networks:
+            - local_net
+
+networks:
+    local_net:
+        external: false
